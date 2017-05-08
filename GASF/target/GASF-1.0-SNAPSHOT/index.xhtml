@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Students</title>
+            </f:facet>
+
+            <style>
+                h1 {text-align:center; color:cadetblue;}
+                body {
+                    background-color: azure;
+                }
+                .ui-button .ui-button-text{
+                    font-size:15px;
+                }
+                form{
+                    font-family: times; font-size:12pt; font-style:inherit; 
+                }
+            </style>
+
+            <h:form >
+                <p:commandButton value="LogOut" action="#{loginController.logoutControl()}" icon="ui-icon-unlocked" style="float: right;"/>
+            </h:form>
+
+        </h:head>
+
+        <h1>List of Students </h1>
+
+        <h:body>
+
+            <p:dialog header="New Student" widgetVar="studentDialog">
+
+                <h:form id="studentForm" >
+
+                    <p:panelGrid columns="2" columnClasses="label, value" >
+                        <p:outputLabel for="firstname" value="First Name : "/>
+                        <p:inputText id="firstname" value="#{studentView.student.firstName}" required="true" label="FirstName" requiredMessage="Please enter the FirstName" validatorMessage="Invalid FirstName"/>                             
+
+                        <p:outputLabel for="lastname" value="Last Name : "/>
+                        <p:inputText id="lastname" value="#{studentView.student.lastName}" required="true" label="LastName" requiredMessage="Please enter the LastName." validatorMessage="Invalid LastName"/>
+
+                        <p:outputLabel for="cnp" value="CNP : "/>
+                        <p:inputText id="cnp" value="#{studentView.student.cnp}" required="true" label="cnp" requiredMessage="Please enter the CNP." validatorMessage="Invalid CNP"/>
+                        
+                        <p:outputLabel for="adress" value="Adress : "/>
+                        <p:inputText id="adress" value="#{studentView.student.adress}" required="true" label="LastName" />
+
+                        <p:outputLabel for="email" value="E-mail : "/>
+                        <p:inputText id="email" label="email"
+                                     validatorMessage="Invalid email format"
+                                     value="#{studentView.student.email}">
+                        </p:inputText>
+
+                        <p:outputLabel for="phoneNumber" value="Phone Number : "/>
+                        <p:inputText id="phoneNumber" value="#{studentView.student.telephonenumber}" validatorMessage="Invalid phoneNumber format" />
+
+                        <p:outputLabel for="anstudiu" value="An Studiu : "/>
+                        <p:inputText id="anstudiu" value="#{studentView.student.anstudiu}" />
+                       
+
+                    </p:panelGrid>
+                    <p:commandButton value="SAVE" actionListener="#{studentView.saveStudent()}" update="studentForm :formTabel" icon="ui-icon-check" oncomplete="if(!args.validationFailed) PF('studentDialog').hide();"/>
+                </h:form>
+            </p:dialog>
+
+            <h:form id="formTabel">
+                <p:growl  showDetail="true" />
+                <p:commandButton id="add" value="Add New Student" onclick="PF('studentDialog').show()" update=":studentForm" icon="ui-icon-plus"/>
+                <p:tooltip id="addStudent" for="add" value="Add New Student" trackMouse="true" />
+
+                <br/>
+                <h:outputText value="Print table:" style="font-size:20px;" />
+                <h:commandLink>
+                    <p:graphicImage value="pdf.png" />
+                    <p:dataExporter type="pdf" target="studentDataTable" fileName="students" pageOnly="true" />
+                </h:commandLink>   
+
+                <br/><br/><br/>
+
+                <p:dataTable  var="student" value="#{studentView.studentsList}" id="studentDataTable" rows="5"
+                              paginator="true"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                              rowsPerPageTemplate="5,10,15" >
+
+                    <p:column  headerText="First Name" width="150" style="text-align: center;" >
+                        <h:outputText value="#{student.firstName}" />
+                    </p:column>
+
+                    <p:column sortBy="#{student.lastName}" headerText="Last Name" style="text-align: center;" width="90">
+                        <h:outputText value="#{student.lastName}" />
+                    </p:column>
+
+                    <p:column headerText="CNP" width="180" style="text-align: center;">
+                        <h:outputText value="#{student.cnp}" />
+                    </p:column>
+                    
+                    <p:column headerText="Adress" width="150" style="text-align: center;">
+                        <h:outputText value="#{student.adress}" />
+                    </p:column>
+                    
+
+                    <p:column headerText="Email" width="230" style="text-align: center;">
+                        <h:outputText value="#{student.email}" />
+                    </p:column>
+
+                    <p:column headerText="PhoneNumber" width="130" style="text-align: center;">
+                        <h:outputText value="#{student.telephonenumber}" />
+                    </p:column>
+                    
+                    <p:column headerText="AnStudiu" width="70" style="text-align: center;">
+                        <h:outputText value="#{student.anstudiu}" />
+                    </p:column>
+
+                    
+
+                    <p:column headerText="Actions" exportable="false">
+
+                        <p:commandButton id="edit"  process="studentDataTable" update=":studentForm" icon="ui-icon-pencil"  onclick="PF('studentDialog').show()">
+                            <f:setPropertyActionListener value="#{student}" target="#{studentView.student}" />
+                        </p:commandButton>
+                        <p:tooltip id="editStudent" for="edit" value="Edit" trackMouse="true" />
+
+                        <p:commandButton id="delete"  process="studentDataTable" action="#{studentView.deleteStudent()}" update=":formTabel" icon="ui-icon-trash">
+                            <p:confirm  message="Are you sure to delete this student?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{student}" target="#{studentView.student}" />
+                        </p:commandButton>
+                        <p:tooltip id="deleteStudent" for="delete" value="Delete" trackMouse="true" />
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
+
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
+

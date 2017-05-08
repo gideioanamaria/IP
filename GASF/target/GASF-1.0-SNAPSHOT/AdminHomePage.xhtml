@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="admin">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Student</title>
+            </f:facet>
+
+            <style>
+                h1 {text-align:center; color:cadetblue;}
+                h2 {text-align:left; color:chocolate;}
+                body {
+                    background-color: azure;
+                }
+                .ui-button .ui-button-text{
+                    font-size:15px;
+                }
+                form{
+                    font-family: times; font-size:12pt; font-style:inherit; 
+                }
+            </style>
+
+            <h:form >
+                <p:commandButton value="LogOut" action="#{loginController.logoutControl()}" icon="ui-icon-unlocked" style="float: right;"/>
+            </h:form>
+
+        </h:head>
+
+        <h1> .... </h1>
+
+        <h:body>
+
+            
+            <p:fieldset legend="Courses" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:graphicImage name="pdf.png" />
+                        <h:outputText
+                            value="The story begins as Don Vito Corleone." />
+                    </h:panelGrid>
+               
+                    <p:commandButton value="View more" action="#"  style="float: right;"/>
+
+            </p:fieldset>
+            
+            <p:fieldset legend="Specialization" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:graphicImage name="pdf.png" />
+                        <h:outputText
+                            value="The storypecia begins as Don Vito Corleone." />
+                    </h:panelGrid>
+               
+                    <p:commandButton value="View more" action="#"  style="float: right;"/>
+
+            </p:fieldset>
+
+
+        </h:body>
+
+    </f:view>
+</html>
+

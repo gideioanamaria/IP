@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="student">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Student</title>
+            </f:facet>
+
+            <style>
+                h1 {text-align:center; color:cadetblue;}
+                h2 {text-align:left; color:chocolate;}
+                body {
+                    background-color: azure;
+                }
+                .ui-button .ui-button-text{
+                    font-size:15px;
+                }
+                form{
+                    font-family: times; font-size:12pt; font-style:inherit; 
+                }
+            </style>
+
+            <h:form >
+                <p:commandButton value="LogOut" action="#{loginController.logoutControl()}" icon="ui-icon-unlocked" style="float: right;"/>
+            </h:form>
+
+        </h:head>
+
+        <h1>Hello  .... </h1>
+
+        <h:body>
+
+            
+            
+
+            <h:form id="formTabel">
+                 
+
+                <br/>
+                <h:outputText value="Print table:" style="font-size:20px;" />
+                <h:commandLink>
+                    <p:graphicImage value="pdf.png" />
+                    <p:dataExporter type="pdf" target="studentDataTable" fileName="students" pageOnly="true" />
+                </h:commandLink>  
+               <br/><br/><br/>
+                <h:outputText value="First Name:" style="font-size:20px;" /><br/>
+                <h:outputText value="Last Name:" style="font-size:20px;" /><br/>
+                <h:outputText value="CNP:" style="font-size:20px;" /><br/>
+                <h:outputText value="Adress:" style="font-size:20px;" /><br/>
+                <h:outputText value="Email:" style="font-size:20px;" /><br/>
+                <h:outputText value="Year study:" style="font-size:20px;" /><br/>
+                <h:outputText value="Specialization:" style="font-size:20px;" /><br/>
+                
+
+                <br/><br/><br/>
+                
+                <h2>Student situation </h2>
+
+                <p:dataTable  var="student" value="#{studentView.studentsList}" id="studentDataTable" rows="5"
+                              paginator="true"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                              rowsPerPageTemplate="5,10,15" >
+
+                    <p:column  headerText="First Name" width="150" style="text-align: center;" >
+                        <h:outputText value="#{student.firstName}" />
+                    </p:column>
+
+                    <p:column sortBy="#{student.lastName}" headerText="Last Name" style="text-align: center;" width="90">
+                        <h:outputText value="#{student.lastName}" />
+                    </p:column>
+
+                    <p:column headerText="CNP" width="180" style="text-align: center;">
+                        <h:outputText value="#{student.cnp}" />
+                    </p:column>
+                    
+                    <p:column headerText="Adress" width="150" style="text-align: center;">
+                        <h:outputText value="#{student.adress}" />
+                    </p:column>
+                    
+
+                    <p:column headerText="Email" width="230" style="text-align: center;">
+                        <h:outputText value="#{student.email}" />
+                    </p:column>
+
+                    <p:column headerText="PhoneNumber" width="130" style="text-align: center;">
+                        <h:outputText value="#{student.telephonenumber}" />
+                    </p:column>
+                    
+                    <p:column headerText="AnStudiu" width="70" style="text-align: center;">
+                        <h:outputText value="#{student.anstudiu}" />
+                    </p:column>
+
+                    
+                </p:dataTable>
+                <br/>
+                
+
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
+
