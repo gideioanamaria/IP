@@ -26,38 +26,58 @@
                 }
             </style>
 
-            <h:form >
-                <p:commandButton value="LogOut" action="#{loginController.logoutControl()}" icon="ui-icon-unlocked" style="float: right;"/>
-            </h:form>
+            
 
         </h:head>
 
-        <h1> .... </h1>
-
         <h:body>
+            <h:form >
+                <p:commandButton value="LogOut" action="#{loginController.logoutControl()}" icon="ui-icon-unlocked" style="float: right;"/>
+                    <facet name="header" >
+                        <h1> Facultatea de Automatica, Calculatoare si Electronica </h1>
+                    </facet> 
+            </h:form>
+            
+            <p:fieldset legend="Specialization" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        
+                        <h:outputText value="Automatică şi Informatică Aplicată (AIA)" /><br/>
+                        <h:outputText value="Calculatoare cu predare în limba engleză (CE)" /><br/>
+                        <h:outputText value="Calculatoare cu predare în limba română (CR)" /><br/>
+                        <h:outputText value="Electronică Aplicată (ELA)" /><br/>
+                        <h:outputText value="Ingineria Sistemelor Multimedia (ISM)" /><br/>
+                        <h:outputText value="Mecatronică (MCT)" /><br/>
+                        <h:outputText value="Robotică (ROB)" /><br/>
+                        
+                    </h:panelGrid>
+            </p:fieldset>
+            
+            <p:fieldset legend="Students" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        
+                        <h:outputText
+                            value="To modify the list of students press the button:" />
+                    </h:panelGrid>
+               
+                    <p:commandButton action="index?faces-redirect=true" value="Go to lists of students" style="float: right;"/>
+                    
+
+            </p:fieldset>
 
             
             <p:fieldset legend="Courses" style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
-                        <p:graphicImage name="pdf.png" />
+                        
                         <h:outputText
-                            value="The story begins as Don Vito Corleone." />
+                            value="To modify the list of events press the button:" />
                     </h:panelGrid>
                
-                    <p:commandButton value="View more" action="#"  style="float: right;"/>
+                    <p:commandButton action="Courses?faces-redirect=true" value="Go to lists of courses" style="float: right;"/>
+                    
 
             </p:fieldset>
             
-            <p:fieldset legend="Specialization" style="margin-bottom:20px">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <p:graphicImage name="pdf.png" />
-                        <h:outputText
-                            value="The storypecia begins as Don Vito Corleone." />
-                    </h:panelGrid>
-               
-                    <p:commandButton value="View more" action="#"  style="float: right;"/>
-
-            </p:fieldset>
+            
 
 
         </h:body>
