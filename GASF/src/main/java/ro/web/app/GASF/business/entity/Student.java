@@ -18,23 +18,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Oana
  */
 @Entity
+@Table(name = "student")
 public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentid;
     @NotNull
+    @Column(name = "firstname")
     private String firstName;
     @NotNull
+    @Column(name = "lastname")
     private String lastName;
     
     @Basic(optional = false)

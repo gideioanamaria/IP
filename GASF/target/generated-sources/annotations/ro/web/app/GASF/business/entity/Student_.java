@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import ro.web.app.GASF.business.entity.Course;
 import ro.web.app.GASF.business.entity.Specialization;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-17T22:45:26")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-30T22:39:31")
 @StaticMetamodel(Student.class)
 public class Student_ { 
 

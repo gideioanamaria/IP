@@ -57,6 +57,10 @@ public class Administrator implements Serializable {
     @Size(max = 30)
     @Column(name = "telephonenumber")
     private String telephonenumber;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
 
     public Administrator() {
     }
@@ -112,6 +116,23 @@ public class Administrator implements Serializable {
         this.telephonenumber = telephonenumber;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -132,9 +153,6 @@ public class Administrator implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ro.netrom.practica.business.boundary.Administrator[ adminid=" + adminid + " ]";
-    }
+   
     
 }

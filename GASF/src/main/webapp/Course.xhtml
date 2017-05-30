@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Courses</title>
+            </f:facet>
+
+            <style>
+                h1 {text-align:center; color:cadetblue;}
+                body {
+                    background-color: azure;
+                }
+                .ui-button .ui-button-text{
+                    font-size:15px;
+                }
+                form{
+                    font-family: times; font-size:12pt; font-style:inherit; 
+                }
+            </style>
+
+            <h:form >
+                <p:button onclick="history.back();" value="Back"  icon="ui-icon-circle-arrow-w" style="float: right;"/>
+            </h:form>
+
+        </h:head>
+
+        <h1>List of courses  </h1>
+
+        <h:body>
+
+            <p:dialog header="New Course" widgetVar="courseDialog">
+
+                <h:form id="courseForm" >
+
+                    <p:panelGrid columns="2" columnClasses="label, value" >
+                        
+                        <p:outputLabel for="courseid" value="Course ID : "/>
+                        <p:inputText id="courseid" value="#{courseView.course.courseid}" />
+                        
+                        <p:outputLabel for="coursename" value="Course Name: "/>
+                        <p:inputText id="coursename" value="#{courseView.course.coursename}"/>                             
+        
+                                                    
+
+
+                    </p:panelGrid>
+                    <p:commandButton value="SAVE" actionListener="#{courseView.saveCourse()}" update="courseForm :formTabel" icon="ui-icon-check" oncomplete="if(!args.validationFailed) PF('courseDialog').hide();"/>
+                </h:form>
+            </p:dialog>
+
+            <h:form id="formTabel">
+                <p:growl  showDetail="true" />
+                <p:commandButton id="add" value="Add Course" onclick="PF('courseDialog').show()" update=":courseForm" icon="ui-icon-plus"/>
+                <p:tooltip id="addCourse" for="add" value="Add Course" trackMouse="true" /> 
+
+                <br/><br/><br/>
+
+                <p:dataTable  var="course" value="#{courseView.coursesList}" id="courseDataTable" rows="5"
+                              paginator="true"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                              rowsPerPageTemplate="5,10,15" >
+
+                  
+
+                    <p:column headerText="Course ID" style="text-align: center;" width="300">
+                        <h:outputText value="#{course.courseid}" />
+                    </p:column>
+
+                    
+                    <p:column  headerText="Course Name" width="480" style="text-align: center;" >
+                        <h:outputText value="#{course.coursename}" />
+                    </p:column>
+                    
+
+                    <p:column headerText="Actions" exportable="false">
+
+                        <p:commandButton id="edit"  process="courseDataTable" update=":courseForm" icon="ui-icon-pencil"  onclick="PF('courseDialog').show()">
+                            <f:setPropertyActionListener value="#{course}" target="#{courseView.course}" />
+                        </p:commandButton>
+                        <p:tooltip id="editCourse" for="edit" value="Edit" trackMouse="true" />
+
+                        <p:commandButton id="delete"  process="courseDataTable" action="#{courseView.deleteCourse()}" update=":formTabel" icon="ui-icon-trash">
+                            <p:confirm  message="Are you sure to delete this course?" icon="ui-icon-alert" />
+                            <f:setPropertyActionListener value="#{course}" target="#{courseView.course}" />
+                        </p:commandButton>
+                        <p:tooltip id="deleteCourse" for="delete" value="Delete" trackMouse="true" />
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
+
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>
+

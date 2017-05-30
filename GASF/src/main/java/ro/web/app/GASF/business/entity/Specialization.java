@@ -118,9 +118,6 @@ public class Specialization implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ro.netrom.practica.business.boundary.Specialization[ specializationid=" + specializationid + " ]";
-    }
+    
     
 }

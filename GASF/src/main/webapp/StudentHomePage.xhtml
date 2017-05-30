@@ -62,46 +62,31 @@
                 
                 <h2>Student situation </h2>
 
-                <p:dataTable  var="student" value="#{studentView.studentsList}" id="studentDataTable" rows="5"
+                <h:form id="formTabel">
+                <p:growl  showDetail="true" />
+
+                <br/><br/><br/>
+
+                <p:dataTable  var="mark" value="#{markView.marksList}" id="markDataTable" rows="5"
                               paginator="true"
                               paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                               rowsPerPageTemplate="5,10,15" >
 
-                    <p:column  headerText="First Name" width="150" style="text-align: center;" >
-                        <h:outputText value="#{student.firstName}" />
+                    <p:column  headerText="Mark" width="380" style="text-align: center;" >
+                        <h:outputText value="#{mark.mark}" />
                     </p:column>
 
-                    <p:column sortBy="#{student.lastName}" headerText="Last Name" style="text-align: center;" width="90">
-                        <h:outputText value="#{student.lastName}" />
+                    <p:column headerText="Course ID" style="text-align: center;" width="290">
+                        <h:outputText value="#{mark.courseid}" />
                     </p:column>
 
-                    <p:column headerText="CNP" width="180" style="text-align: center;">
-                        <h:outputText value="#{student.cnp}" />
-                    </p:column>
-                    
-                    <p:column headerText="Adress" width="150" style="text-align: center;">
-                        <h:outputText value="#{student.adress}" />
-                    </p:column>
-                    
-
-                    <p:column headerText="Email" width="230" style="text-align: center;">
-                        <h:outputText value="#{student.email}" />
-                    </p:column>
-
-                    <p:column headerText="PhoneNumber" width="130" style="text-align: center;">
-                        <h:outputText value="#{student.telephonenumber}" />
-                    </p:column>
-                    
-                    <p:column headerText="AnStudiu" width="70" style="text-align: center;">
-                        <h:outputText value="#{student.anstudiu}" />
-                    </p:column>
-
-                    
                 </p:dataTable>
                 <br/>
                 
 
             </h:form>
+                
+                </h:form>
 
         </h:body>
 

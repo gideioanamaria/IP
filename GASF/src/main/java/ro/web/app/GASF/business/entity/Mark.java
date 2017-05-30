@@ -87,9 +87,6 @@ public class Mark implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ro.netrom.practica.business.boundary.Mark[ mark=" + mark + " ]";
-    }
+    
     
 }

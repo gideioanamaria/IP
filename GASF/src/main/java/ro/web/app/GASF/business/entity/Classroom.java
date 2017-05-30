@@ -108,9 +108,6 @@ public class Classroom implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ro.netrom.practica.business.boundary.Classroom[ classroomid=" + classroomid + " ]";
-    }
+  
     
 }

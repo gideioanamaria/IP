@@ -29,8 +29,7 @@ public class Course implements Serializable {
     private Long courseid;
     @NotNull
     private String coursename;
-    private Integer courseYear;
-    private String courseTeacher;
+
     @ManyToMany(mappedBy = "courseCollection")
     private Collection<Classroom> classroomCollection;
     @JoinTable(name = "student_course", joinColumns = {
@@ -60,21 +59,6 @@ public class Course implements Serializable {
         this.coursename = coursename;
     }
 
-    public Integer getCourseYear() {
-        return courseYear;
-    }
-
-    public void setCourseYear(Integer courseYear) {
-        this.courseYear = courseYear;
-    }
-
-    public String getCourseTeacher() {
-        return courseTeacher;
-    }
-
-    public void setCourseTeacher(String courseTeacher) {
-        this.courseTeacher = courseTeacher;
-    }
     
     @XmlTransient
     public Collection<Classroom> getClassroomCollection() {
