@@ -8,7 +8,7 @@ import ro.web.app.GASF.business.entity.Classroom;
 import ro.web.app.GASF.business.entity.Specialization;
 import ro.web.app.GASF.business.entity.Student;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-30T22:39:31")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-05-31T14:26:17")
 @StaticMetamodel(Course.class)
 public class Course_ { 
 
